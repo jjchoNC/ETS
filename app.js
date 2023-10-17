@@ -1,17 +1,15 @@
-const curElement = document.getElementById("cur");
+const curElement = document.getElementById("hasil");
 
 function createCard(nama, id) {
     // card col
-    var warna = ["primary", "secondary", "success", "warning", "info", "danger",]
     const outerDiv = document.createElement("div");
-    outerDiv.className = "col-lg-2 col-md-3 col-sm-6 col-12 mb-3";
-    outerDiv.style.marginTop = "10px";
-    outerDiv.style.paddingRight = "5px"
+    outerDiv.className = "col-lg-2 col-md-3 col-sm-12 col-12 mb-3";
+    outerDiv.style.marginTop = "20px";
 
     // card style
     const cardDiv = document.createElement("div");
     cardDiv.className = `card border-left-primary shadow h-100 py-2`;
-    cardDiv.style.borderRadius = "8px";
+    cardDiv.style.borderRadius = "5px";
 
     // card body
     const cardBodyDiv = document.createElement("div");
@@ -27,12 +25,13 @@ function createCard(nama, id) {
 
     // value 1
     const titleDiv = document.createElement("div");
-    titleDiv.className = "text-xs font-weight-bold text-primary text-uppercase mb-1";
+    titleDiv.className = "text-xs font-weight-bold text-primary text-uppercase mb-2";
     titleDiv.textContent = nama
+    titleDiv.style.marginRight = "8px"
 
     // value 2
     const valueDiv = document.createElement("div");
-    valueDiv.className = "h5 mb-0 font-weight-bold text-gray-800";
+    valueDiv.className = "h5 mb-0 font-weight-normal text-gray-800";
     valueDiv.textContent = id
 
     colDiv.appendChild(titleDiv);
@@ -51,9 +50,11 @@ $.ajax({
     dataType: "json",
     crossDomain: true,
     success: function (response) {
-        console.log(response)
-        for (let index = 0; index < 10; index++) {
-            createCard(response[index].name, response[index].id);
+        // console.log(response)
+        for (let index = 0; index < 11; index++) {
+            var nama = response[index].name
+            var id = response[index].id
+            createCard(nama, id);
         }
     },
 });
